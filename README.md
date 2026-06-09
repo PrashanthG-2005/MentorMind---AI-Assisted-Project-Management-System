@@ -93,6 +93,27 @@ cd "MentorMind – AI Assisted Project Management System"
     JWT_SECRET=your_super_secret_jwt_key
     GEMINI_API_KEY=your_gemini_api_key_here
     ```
+
+### 🔑 Obtaining & Adding the Gemini API Key
+
+To enable the AI-assisted features (such as requirements analysis, automated task breakdowns, team allocation suggestions, intelligent auto-assignment, and multimodal task submission reviews), you need to configure your Gemini API Key:
+
+1. **Obtain the API Key**:
+   - Go to the [Google AI Studio API Keys](https://aistudio.google.com/app/apikey) page.
+   - Sign in with your Google account.
+   - Click the **Create API Key** button.
+   - Copy the generated API key.
+
+2. **Add to Backend `.env`**:
+   - Open your `backend/.env` file.
+   - Replace `your_gemini_api_key_here` with your copied key:
+     ```env
+     GEMINI_API_KEY=your_actual_copied_key_here
+     ```
+   - If the backend server is already running, restart it to load the new environment variable.
+
+*Note: If no API key is specified, the application will automatically fall back to local simulated algorithms for task generation, role analysis, and matching.*
+
 4.  Seed the Database:
     Populate your database with default dummy projects, tasks, and users:
     ```bash

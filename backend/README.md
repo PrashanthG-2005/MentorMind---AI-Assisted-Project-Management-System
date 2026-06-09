@@ -26,8 +26,9 @@ bash
 ```
 
 3. Configure environment variables:
-   - Copy `.env.example` to `.env` (already provided)
-   - Update `MONGODB_URI` if using a cloud MongoDB instance
+   - Copy `.env.example` to `.env` (or use the already provided `.env` file).
+   - Set the `GEMINI_API_KEY` to your Google Gemini API key. You can get one from [Google AI Studio](https://aistudio.google.com/app/apikey).
+   - Update `MONGODB_URI` if using a cloud MongoDB instance.
 
 ## Running the Backend
 
