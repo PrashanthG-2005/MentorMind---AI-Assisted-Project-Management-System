@@ -1,4 +1,4 @@
-import { CheckCircle, Clock, Flag, FileText, Send, Plus, Edit2, Users } from "lucide-react";
+import { CheckCircle, Clock, FileText, Plus, Edit2, Users } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { autoAssignTasks } from "../../services/projectService";

@@ -4,8 +4,7 @@ import {
   CheckCircle2,
   Calendar,
   Eye,
-  Edit2,
-  Trash2
+  Edit2
 } from "lucide-react";
 
 const ProjectCard = ({ project, onEdit }) => {

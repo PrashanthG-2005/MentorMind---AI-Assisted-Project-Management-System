@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Search, LayoutGrid, List, Plus, ChevronDown, X } from "lucide-react";
 
 const Dropdown = ({ 

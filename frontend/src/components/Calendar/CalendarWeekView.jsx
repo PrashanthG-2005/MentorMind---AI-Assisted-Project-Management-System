@@ -2,9 +2,7 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Clock, 
-  Users,
-  Plus,
-  MoreVertical
+  Plus
 } from "lucide-react";
 
 const CalendarWeekView = ({ currentDate, setCurrentDate, events, onEventClick, onCreateEvent }) => {

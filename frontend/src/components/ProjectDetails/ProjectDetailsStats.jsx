@@ -1,4 +1,4 @@
-import { CheckCircle2, AlertCircle, Clock, XCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle, Clock } from "lucide-react";
 
 const ProjectDetailsStats = ({ stats }) => {
   const statItems = [

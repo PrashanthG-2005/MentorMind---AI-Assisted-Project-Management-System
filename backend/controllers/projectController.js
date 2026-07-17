@@ -4,7 +4,6 @@ import User from '../models/User.js';
 import Notification from '../models/Notification.js';
 import { extractTasksFromText } from '../nlp/extractTasks.js';
 import { matchTasksWithTeam, analyzeProjectRoles } from '../services/aiService.js';
-import { generateTasksFromDescription } from '../services/taskGenerator.js';
 
 // @desc    Get all projects
 // @route   GET /api/projects

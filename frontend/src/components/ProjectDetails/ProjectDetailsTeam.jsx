@@ -1,6 +1,5 @@
 import { 
   Mail, 
-  Phone, 
   Target, 
   Zap, 
   MapPin, 

@@ -1,9 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { 
-  Clock, 
-  CheckCircle2,
-  Calendar,
-  Eye,
+  Eye, 
   Edit2,
   Trash2
 } from "lucide-react";

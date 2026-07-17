@@ -1,4 +1,4 @@
-import { LayoutGrid, List, TrendingUp, Target, Activity, Users } from "lucide-react";
+import { LayoutGrid, List, Activity, Users } from "lucide-react";
 
 const ProjectDetailsTabs = ({ activeTab, setActiveTab }) => {
   const tabs = [

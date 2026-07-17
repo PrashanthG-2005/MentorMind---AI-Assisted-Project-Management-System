@@ -1,4 +1,3 @@
-import React from 'react';
 import { Plus } from "lucide-react";
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import TaskCard from './TaskCard';

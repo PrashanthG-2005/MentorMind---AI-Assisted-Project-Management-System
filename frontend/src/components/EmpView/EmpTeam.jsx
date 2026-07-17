@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Users, UserPlus } from "lucide-react";
+import { Users } from "lucide-react";
 import TeamGridView from "../Teams/TeamGridView";
 import TeamListView from "../Teams/TeamListView";
 import { getUsers } from "../../services/userService";

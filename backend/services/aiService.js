@@ -7,7 +7,7 @@ dotenv.config();
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
 
-// Use gemini-1.5-flash (gemini-pro is deprecated)
+// Use gemini-2.5-flash (gemini-pro is deprecated)
 const MODEL = "gemini-2.5-flash";
 
 /**

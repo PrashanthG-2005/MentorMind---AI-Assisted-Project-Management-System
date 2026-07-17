@@ -1,7 +1,6 @@
 import { 
   Calendar, 
   Clock, 
-  Users, 
   CheckCircle2, 
   AlertCircle,
   TrendingUp,

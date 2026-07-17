@@ -1,4 +1,4 @@
-import { Plus, Calendar, Clock, Users, Flag, Star, ChevronRight, Sparkles } from "lucide-react";
+import { Plus, Calendar, Clock, Flag, Star, ChevronRight, Sparkles } from "lucide-react";
 
 const CalendarSidebar = ({ selectedDate, events, onCreateEvent, onEventClick }) => {
   const getEventsForDate = (date) => {

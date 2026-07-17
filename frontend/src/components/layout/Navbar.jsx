@@ -13,7 +13,6 @@ import {
   Menu,
   X,
   CheckCircle2,
-  AlertCircle,
   Brain
 } from "lucide-react";
 import axios from "axios";

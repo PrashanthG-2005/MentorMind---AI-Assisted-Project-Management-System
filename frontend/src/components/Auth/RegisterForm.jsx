@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { getInviteByToken } from "../../services/authService";
-import { UserPlus, ArrowRight, Mail, Lock, User, Eye, EyeOff, CheckCircle, XCircle, Building2, Phone } from "lucide-react";
+import { ArrowRight, Mail, Lock, User, Eye, EyeOff, CheckCircle, XCircle, Building2, Phone } from "lucide-react";
 
 const RegisterForm = () => {
   const [searchParams] = useSearchParams();

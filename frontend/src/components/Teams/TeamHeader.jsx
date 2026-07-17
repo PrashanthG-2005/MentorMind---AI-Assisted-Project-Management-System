@@ -1,4 +1,3 @@
-import { Users } from "lucide-react";
 
 const TeamHeader = () => {
   return (

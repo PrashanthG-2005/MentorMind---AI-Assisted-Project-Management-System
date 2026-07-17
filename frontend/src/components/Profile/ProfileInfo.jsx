@@ -1,4 +1,4 @@
-import { User, Mail, Phone, MapPin, Calendar, Briefcase, Award, Edit, Camera, Building2, Globe, Clock, Link2, Share2, Download } from "lucide-react";
+import { User, Mail, Phone, MapPin, Calendar, Briefcase, Edit, Camera, Building2, Globe, Link2 } from "lucide-react";
 
 const ProfileInfo = ({ user }) => {
   return (

@@ -1,10 +1,8 @@
 import { 
   ChevronLeft, 
   ChevronRight, 
-  Calendar as CalendarIcon,
   List,
-  Grid3X3,
-  ArrowRightLeft
+  Grid3X3
 } from "lucide-react";
 
 const CalendarHeader = ({ currentDate, setCurrentDate, viewMode, setViewMode }) => {

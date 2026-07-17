@@ -1,30 +1,14 @@
-/* eslint-disable no-unused-vars */
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { 
   X, 
-  Calendar,
-  Users,
   FileText,
-  Plus,
-  Trash2,
-  Upload,
-  Trophy,
   Target,
-  Clock,
-  Briefcase,
   Layers,
   CheckCircle2,
-  FileUp,
-  AlertCircle,
-  Zap,
-  Brain,
   Sparkles
 } from "lucide-react";
-import { calculateMatchScore, getScoreColor, ROLE_SKILLS } from "../../utils/skillMatcher.js";
-import { analyzeProjectRoles, simulateProjectPipeline } from "../../services/projectService.js";
 
-const ProjectModal = ({ isOpen, onClose, onSave, project, teamOptions }) => {
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+const ProjectModal = ({ isOpen, onClose, onSave, project }) => {
   const [formData, setFormData] = useState({
     title: project?.title || "",
     description: project?.description || "",
@@ -38,155 +22,23 @@ const ProjectModal = ({ isOpen, onClose, onSave, project, teamOptions }) => {
     tags: project?.tags?.join(', ') || "",
     documentText: ""
   });
-  const [step, setStep] = useState(1);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [mode, setMode] = useState("manual"); // 'manual' or 'auto'
-  const fileInputRef = useRef(null);
-
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [aiVerificationResult, setAiVerificationResult] = useState(null);
+  const step = 1;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    if (name === "documentText" || name === "description") setAiVerificationResult(null);
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    // Validate size (5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      alert("Mission Briefing must be under 5MB ❌");
-      return;
-    }
-
-    setSelectedFile(file);
-    setMode("auto"); // Auto-switch to AI mode 🔥
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Ensure we have a description even in auto-mode to satisfy backend validation
-    const finalDescription = mode === 'auto' && !formData.description 
-      ? `AI-extracted project from briefing: ${selectedFile?.name || 'input'}` 
-      : formData.description;
-
     const submissionData = { 
       ...formData,
-      description: finalDescription,
       tags: formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag !== "")
     };
     
-    if (selectedFile) {
-      submissionData.file = selectedFile;
-    }
-    
     onSave(submissionData, formData.documentText);
   };
-
-  const toggleTeamMember = (member) => {
-    setFormData(prev => {
-      const exists = prev.team.find(m => (m.user?._id || m._id) === member._id);
-      if (exists) {
-        return { ...prev, team: prev.team.filter(m => (m.user?._id || m._id) !== member._id) };
-      }
-      return { ...prev, team: [...prev.team, { ...member, user: member, role: 'Member' }] };
-    });
-    setAiVerificationResult(null);
-  };
-
-  const addRequiredRole = () => {
-    setFormData(prev => ({
-      ...prev,
-      requiredRoles: [...prev.requiredRoles, { role: 'Frontend Developer', count: 1, description: '' }]
-    }));
-  };
-
-  const removeRequiredRole = (index) => {
-    setFormData(prev => ({
-      ...prev,
-      requiredRoles: prev.requiredRoles.filter((_, i) => i !== index)
-    }));
-  };
-
-  const updateRequiredRole = (index, field, value) => {
-    setFormData(prev => {
-      const newRoles = [...prev.requiredRoles];
-      newRoles[index] = { ...newRoles[index], [field]: value };
-      return { ...prev, requiredRoles: newRoles };
-    });
-  };
-
-  const handleAIAnalyze = async () => {
-    if (!formData.description && !formData.documentText) {
-      alert("Please provide a project description or mission briefing in Step 1 first.");
-      return;
-    }
-
-    setIsAnalyzing(true);
-    try {
-      const briefing = formData.documentText || formData.description;
-      const suggestions = await analyzeProjectRoles(briefing);
-      
-      if (suggestions && suggestions.length > 0) {
-        setFormData(prev => ({
-          ...prev,
-          requiredRoles: suggestions
-        }));
-      }
-    } catch (error) {
-      console.error("AI Analysis Error:", error);
-      alert("AI Analysis failed. Please try manual entry.");
-    } finally {
-      setIsAnalyzing(false);
-    }
-  };
-
-  const updateMemberRole = (memberId, newRole) => {
-    setFormData(prev => ({
-      ...prev,
-      team: prev.team.map(m => (m.user?._id || m._id) === memberId ? { ...m, role: newRole } : m)
-    }));
-  };
-
-  const handleVerifyProject = async () => {
-    const briefing = formData.documentText || formData.description;
-    if (!briefing) {
-      alert("Please provide a mission briefing or description in Step 1.");
-      return;
-    }
-    if (formData.team.length === 0) {
-      alert("Please assign at least one team member.");
-      return;
-    }
-
-    setIsVerifying(true);
-    try {
-      const result = await simulateProjectPipeline(briefing, formData.team);
-      setAiVerificationResult(result);
-    } catch (error) {
-      console.error("AI Verification Error:", error);
-      alert("Verification failed: " + error);
-    } finally {
-      setIsVerifying(false);
-    }
-  };
-
-  // Validation Logic
-  const getRoleCounts = () => {
-    const counts = {};
-    formData.team.forEach(m => {
-      counts[m.role] = (counts[m.role] || 0) + 1;
-    });
-    return counts;
-  };
-
-  const roleCounts = getRoleCounts();
-  const missingRoles = formData.requiredRoles.filter(req => (roleCounts[req.role] || 0) < req.count);
-  const isPerfectMatch = missingRoles.length === 0 && formData.team.length > 0;
 
   if (!isOpen) return null;
 

@@ -8,10 +8,7 @@ import {
   Users,
   Calendar,
   BarChart3,
-  Settings,
   LogOut,
-  Menu,
-  X,
   MessageSquare,
   User,
 } from "lucide-react";
